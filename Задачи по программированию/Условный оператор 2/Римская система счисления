@@ -1,0 +1,39 @@
+//Римская система счисления
+//Дано число X. Требуется перевести это число в римскую систему счисления.
+//
+//Входные данные
+//
+//Дано число X в десятичной системе счисления (1  ≤  X  ≤  100).
+//
+//Выходные данные
+//
+//Выведите X в римской системе счисления.
+//
+//Sample Input:
+//
+//4
+//Sample Output:
+//
+//IV
+
+var stdin = process.openStdin();
+stdin.addListener("data", function(e) {
+    let data = e.toString().split('\n');
+    let x = +data[0];
+    getResult(x);
+});
+
+function getResult(x){
+    let quntityDec = parseInt(x / 10);
+    let quantityUn = parseInt(x % 10);
+    let firstPart = {'0':'',
+                     '1':'X','2':'XX', '3':'XXX', '4':'XL', '5':'L', '6':'LX', '7':'LXX', '8':'LXXX', '9':'XC'};
+    let secondPart = {'0':'', '1':'I', '2':'II', '3':'III', '4':'IV', '5':'V', '6':'VI', '7':'VII', '8':'VIII',
+                     '9':'IX'};
+
+    if(quntityDec == 10){
+        console.log('C');
+    }else{
+        console.log(firstPart[quntityDec] + secondPart[quantityUn]);
+    }
+}

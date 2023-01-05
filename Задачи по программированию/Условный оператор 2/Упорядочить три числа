@@ -1,0 +1,65 @@
+//Упорядочить три числа
+//Дано три числа, записанных в отдельных строках. Упорядочите их в порядке неубывания. Программа должна считывать три числа a, b, c, затем программа должна менять их значения так, чтобы стали выполнены условия a <= b <= c, затем программа выводит тройку a, b, c.
+//
+//Входные данные
+//
+//Вводятся три числа, каждое записано в отдельной строке.
+//
+//Выходные данные
+//
+//Выведите ответ на задачу.
+//
+//Sample Input:
+//
+//1
+//2
+//1
+//Sample Output:
+//
+//1 1 2
+
+var stdin = process.openStdin();
+stdin.addListener("data", function(e) {
+    let data = e.toString().split('\n');
+    let a = +data[0];
+    let b = +data[1];
+    let c = +data[2];
+    getResult(a, b, c);
+});
+
+function getResult(a, b, c){
+    if(a <= b && a <= c){
+        let min1 = a;
+        if(b <= c){
+            let min2 = b;
+            let min3 = c;
+            console.log(min1 + ' ' + min2 + ' ' + min3);
+        }else{
+            let min2 = c;
+            let min3 = b
+            console.log(min1 + ' ' + min2 + ' ' + min3);
+            }
+    }else if(b <= a && b <= c){
+        let min1 = b;
+        if(a <= c){
+            let min2 = a;
+            let min3 = c;
+            console.log(min1 + ' ' + min2 + ' ' + min3);
+        }else{
+            let min2 = c;
+            let min3 = a;
+            console.log(min1 + ' ' + min2 + ' ' + min3);
+        }
+    }else if(c <= a && c <= b){
+        let min1 = c;
+        if(a <= b){
+            let min2 = a;
+            let min3 = b;
+            console.log(min1 + ' ' + min2 + ' ' + min3);
+        }else{
+            let min2 = b;
+            let min3 = a;
+            console.log(min1 + ' ' + min2 + ' ' + min3);
+        }
+    }
+}

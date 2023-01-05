@@ -1,0 +1,74 @@
+//Билеты на метро
+//Билет на одну поездку в метро стоит 15 рублей, билет на 10 поездок стоит 125 рублей, билет на 60 поездок стоит 440 рублей. Пассажир планирует совершить n поездок. Определите, сколько билетов каждого вида он должен приобрести, чтобы суммарное количество оплаченных поездок было не меньше n, а общая стоимость приобретенных билетов – минимальна.
+//
+//Входные данные
+//
+//Дано одно число n - количество поездок.
+//
+//Выходные данные
+//
+//Выведите три целых числа, равные необходимому количеству билетов на 1, на 10, на 60 поездок.
+//
+//Sample Input:
+//
+//129
+//Sample Output:
+//
+//0 1 2
+
+var stdin = process.openStdin();
+stdin.addListener("data", function(e) {
+    let data = e.toString().split('\n');
+    let n = +data[0];
+    getResult(n);
+});
+
+function getResult(n){
+
+    let bigTiсkets = parseInt(n / 60);
+    let remTickets60 = n % 60;
+
+    if(remTickets60 > 10){
+        let remTickets10 = parseInt(remTickets60 / 10);
+        let remTickets1 = parseInt(remTickets60 % 10);
+
+        let cost1 = 440 * bigTiсkets + 125 * remTickets10 + 15 * remTickets1;
+        let arr1 = [remTickets1, remTickets10, bigTiсkets];
+
+        let cost2 = 440 * bigTiсkets + 125 * (remTickets10 + 1);
+        let arr2 = [0, remTickets10 + 1, bigTiсkets];
+
+        let cost3 = 440 * (bigTiсkets + 1);
+        let arr3 = [0, 0, 1];
+
+        if(cost1 <= cost2 && cost1 <= cost3){
+            printArr(arr1);
+        } else if(cost2 <= cost1 && cost2 <= cost3){
+            printArr(arr2);
+        }else{
+            printArr(arr3);
+        }
+
+
+    }else{
+        let remTickets1 = parseInt(remTickets60 % 10);
+
+        let cost1 = 440 * bigTiсkets + 15 * remTickets1;
+        let arr1 = [remTickets1, 0, bigTiсkets];
+
+        let cost2 = 440 * bigTiсkets + 125;
+        let arr2 = [0, 1, bigTiсkets];
+
+        if(cost1 <= cost2){
+            printArr(arr1);
+        }else{
+            printArr(arr2);
+        };
+
+    }
+
+}
+
+function printArr(arr){
+    console.log(arr[0] + ' ' + arr[1] + ' ' + arr[2]);
+}

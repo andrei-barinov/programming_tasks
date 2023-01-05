@@ -1,0 +1,36 @@
+//Количество равных из трех
+//Входные данные
+//
+//Даны три целых числа, записанных в отдельных строках. Определите, сколько среди них совпадающих.
+//
+//Выходные данные
+//
+//Программа должна вывести одно из чисел: 3 (если все совпадают), 2 (если два совпадают) или 0 (если все числа различны).
+//
+//Sample Input:
+//
+//4
+//3
+//4
+//Sample Output:
+//
+//2
+
+var stdin = process.openStdin();
+stdin.addListener("data", function(e) {
+    let data = e.toString().split('\n');
+    let a = +data[0];
+    let b = +data[1];
+    let c = +data[2];
+    getResult(a, b, c);
+});
+
+function getResult(a, b, c){
+    if(a == b && a == c){
+        console.log(3);
+    }else if(a == b || a == c || b == c){
+        console.log(2);
+    }else {
+        console.log(0);
+    }
+}

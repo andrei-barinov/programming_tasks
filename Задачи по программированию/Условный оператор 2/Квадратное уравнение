@@ -1,0 +1,70 @@
+//Квадратное уравнение
+//Даны целые числа a, b, c. Найдите все целочисленные решения квадратного уравнения ax2 + bx + c = 0, если таковые существуют.
+//
+//Входные данные
+//
+//Даны три целых числа, a не равно 0.
+//
+//Выходные данные
+//
+//Выведите два целых числа, если уравнение имеет два корня (выводить в порядке возрастания, через пробел), одно целое число – при наличии одного корня. При отсутствии целых корней ничего выводить не нужно.
+//
+//Sample Input:
+//
+//1
+//0
+//0
+//Sample Output:
+//
+//0
+
+var stdin = process.openStdin();
+stdin.addListener("data", function(e) {
+    let data = e.toString().split('\n');
+    let a = +data[0];
+    let b = +data[1];
+    let c = +data[2];
+    getResult(a, b, c);
+});
+
+function getResult(a, b, c){
+    let d = b * b - 4 * a * c;
+    let arr = [];
+
+    if(d > 0){
+        let x1 = (-b + Math.sqrt(d))/(2 * a);
+        let x2 = (-b - Math.sqrt(d))/(2 * a);
+
+        if(Number.isInteger(x1)){
+            arr.push(parseInt(x1));
+        }
+
+        if(Number.isInteger(x2)){
+            arr.push(parseInt(x2));
+        }
+
+        let newArr = arr.sort(function(a, b){
+            return a - b;
+        });
+
+
+        if(newArr.length == 2){
+            console.log(newArr[0] + ' ' + newArr[1]);
+        }else if(newArr.length == 1){
+            console.log(newArr[0]);
+        }else{
+            console.log('');
+        }
+
+    }else if(d == 0){
+        let x1 = (-b + Math.sqrt(d))/(2 * a);
+
+        if(Number.isInteger(x1)){
+            console.log(parseInt(x1));
+        }else{
+            console.log('');
+        }
+    }else{
+        console.log('');
+    }
+}

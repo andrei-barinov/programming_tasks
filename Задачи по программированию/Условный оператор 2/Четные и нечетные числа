@@ -1,0 +1,42 @@
+//Четные и нечетные числа
+//Даны три целых числа A, B, C. Определить, есть ли среди них хотя бы одно четное и хотя бы одно нечетное.
+//
+//Входные данные
+//
+//Числа A, B, C, не превышающие по модулю 10000.
+//
+//Выходные данные
+//
+//Одна строка – "YES" или "NO".
+//
+//Sample Input:
+//
+//3
+//4
+//5
+//Sample Output:
+//
+//YES
+
+var stdin = process.openStdin();
+stdin.addListener("data", function(e) {
+    let data = e.toString().split('\n');
+    let a = +data[0];
+    let b = +data[1];
+    let c = +data[2];
+    getResult(a, b, c);
+});
+
+function getResult(a, b, c){
+    if(
+       (a % 2 == 0 && (b % 2 == 1 || c % 2 == 1))
+       ||
+       (b % 2 == 0 && (a % 2 == 1 || c % 2 == 1))
+       ||
+       (c % 2 == 0 && (a % 2 == 1 || b % 2 == 1))
+      ){
+        console.log("YES");
+    }else{
+        console.log("NO")
+    }
+}

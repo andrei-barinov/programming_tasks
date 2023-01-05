@@ -1,0 +1,44 @@
+//Котлеты
+//На сковородку одновременно можно положить k котлет. Каждую котлету нужно с каждой стороны обжаривать m минут непрерывно. За какое наименьшее время удастся поджарить с обеих сторон n котлет?
+//
+//Входные данные
+//
+//Вводятся 3 числа: k, m и n. Все числа не превосходят 32000.
+//
+//Выходные данные
+//
+//Вывести время, за которое все котлеты будут обжарены.
+//
+//Sample Input:
+//
+//1
+//5
+//1
+//Sample Output:
+//
+//10
+
+var stdin = process.openStdin();
+stdin.addListener("data", function(d) {
+    let data = d.toString().split('\n');
+    let k = +data[0];
+    let m = +data[1];
+    let n = +data[2];
+    getResult(k, m, n);
+  });
+
+function getResult(k, m, n){
+    if(n <= k){
+        let t = 2 * m;
+        console.log(t);
+    } else if(n % k == 0) {
+        let t = 2 * (parseInt(n / k)) * m;
+        console.log(t);
+    } else if(n % k <= k / 2){
+        let t = 2 * (parseInt(n / k)) * m + m;
+        console.log(t);
+    }else{
+        let t = 2 *(parseInt(n / k) + 1) * m;
+        console.log(t);
+    }
+}

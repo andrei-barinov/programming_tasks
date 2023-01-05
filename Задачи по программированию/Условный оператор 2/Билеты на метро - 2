@@ -1,0 +1,80 @@
+//Билеты на метро - 2
+//Билет на одну поездку в метро стоит 15 рублей, билет на 5 поездок стоит 70 рублей, билет на 10 поездок стоит 125 рублей, билет на 20 поездок стоит 230 рублей, билет на 60 поездок стоит 440 рублей. Пассажир планирует совершить n поездок. Определите, сколько билетов каждого вида он должен приобрести, чтобы суммарное количество оплаченных поездок было не меньше n, а общая стоимость приобретенных билетов – минимальна.
+//
+//Входные данные
+//
+//Дано одно число n - количество поездок.
+//
+//Выходные данные
+//
+//Выведите пять целых чисел, равные необходимому количеству билетов на 1, на 5, на 10, на 20, на 60 поездок. Если для какого-то данного n существует несколько способов приобретения билетов одинаковой стоимости, необходимо вывести ту комбинацию билетов, которая дает большее число поездок.
+//
+//Sample Input:
+//
+//1
+//Sample Output:
+//
+//1 0 0 0 0
+
+var stdin = process.openStdin();
+stdin.addListener("data", function(e) {
+    let data = e.toString().split('\n');
+    let n = +data[0];
+    getResult(n);
+});
+
+function getResult(n){
+    let qTickets60 = parseInt(n / 60);
+    let remTickets1 = (n % 60);
+
+    let cost1 = 440 * (qTickets60 + 1);
+    let arr1 = [0, 0, 0, 0, qTickets60 + 1];
+
+    let qTickets20 = parseInt((n % 60) / 20);
+    let cost2 = 440 * qTickets60 + 230 * (qTickets20 + 1);
+    let arr2 = [0, 0, 0, qTickets20 + 1, qTickets60];
+
+    let qTickets10 = parseInt(((n % 60) % 20) / 10);
+    let cost3 = 440 * qTickets60 + 230 * qTickets20 + 125 * (qTickets10 + 1);
+    let arr3 = [0, 0, qTickets10 + 1, qTickets20, qTickets60];
+
+    let qTickets5 = parseInt((((n % 60) % 20) % 10) / 5);
+    let remTickets = parseInt((((n % 60) % 20) % 10) % 5);
+    let cost4 = 440 * qTickets60 + 230 * qTickets20 + 125 * qTickets10 + 70 * (qTickets5 + 1);
+    let arr4 = [0, qTickets5 + 1, qTickets10, qTickets20, qTickets60];
+
+    let cost5 = 440 * qTickets60 + 230 * qTickets20 + 125 * qTickets10 + 70 * qTickets5 + 15 * remTickets;
+    let arr5 = [remTickets, qTickets5, qTickets10, qTickets20, qTickets60];
+
+    let min = getMin(cost1, cost2, cost3, cost4, cost5);
+
+    if(min == cost1){
+        printArr(arr1);
+    }else if(min == cost2){
+        printArr(arr2);
+    }else if(min == cost3){
+        printArr(arr3);
+    }else if(min == cost4){
+        printArr(arr4);
+    }else{
+        printArr(arr5);
+    }
+}
+
+function printArr(arr){
+    console.log(arr[0] + ' ' + arr[1] + ' ' + arr[2] + ' ' + arr[3] + ' ' + arr[4]);
+}
+
+function getMin(cost1, cost2, cost3, cost4, cost5){
+    if(cost1 <= cost2 && cost1 <= cost3 && cost1 <= cost4 && cost1 <= cost5){
+        return cost1;
+    }else if(cost2 <= cost1 && cost2 <= cost3 && cost2 <= cost4 && cost2 <= cost5){
+        return cost2;
+    }else if(cost3 <= cost1 && cost3 <= cost2 && cost3 <= cost4 && cost3 <= cost5){
+        return cost3;
+    }else if(cost4 <= cost1 && cost4 <= cost2 && cost4 <= cost3 && cost4 <= cost5){
+        return cost4;
+    }else{
+        return cost5;
+    }
+}
