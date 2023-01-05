@@ -1,0 +1,39 @@
+//Уравнение
+//Решить в целых числах уравнение ax + b = 0.
+//
+//Входные данные
+//
+//Вводятся 2 целых числа: a и b.
+//
+//Выходные данные
+//
+//Необходимо вывести все решения, если их число конечно, “NO” (без кавычек), если решений нет, и “INF” (без кавычек), если решений бесконечно много.
+//
+//Sample Input:
+//
+//6
+//-2
+//Sample Output:
+//
+//NO
+
+var stdin = process.openStdin();
+stdin.addListener("data", function(d) {
+    let data = d.toString().split('\n');
+    let a = +data[0];
+    let b = +data[1];
+    let k = +data[2];
+    getResult(a, b);
+  });
+
+function getResult(a, b){
+    if(b % a != 0 && a != 0){
+        console.log("NO");
+    }else if(a == 0) {
+        if(b == 0 ) console.log("INF");
+        else console.log("NO");
+    }else if(b == 0) console.log(0);
+    else if(b % a == 0){
+        console.log(-b / a);
+    }
+}

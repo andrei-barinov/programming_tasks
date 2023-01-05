@@ -1,0 +1,42 @@
+//Сложное уравнение
+//Решить в целых числах уравнение ( ax + b ) : ( cx + d ) = 0.
+//
+//Входные данные
+//
+//Вводятся 4 числа: a, b, c и d; c и d не равны нулю одновременно.
+//
+//Выходные данные
+//
+//Необходимо вывести все целочисленные решения, если их число конечно, “NO” (без кавычек), если целочисленных решений нет, и “INF” (без кавычек), если их бесконечно много.
+//
+//Sample Input:
+//
+//1
+//1
+//2
+//2
+//Sample Output:
+//
+//NO
+
+var stdin = process.openStdin();
+stdin.addListener("data", function(e) {
+    let data = e.toString().split('\n');
+    let a = +data[0];
+    let b = +data[1];
+    let c = +data[2];
+    let d = +data[3];
+    getResult(a, b, c, d);
+  });
+
+function getResult(a, b, c, d){
+    if(a == 0 && b == 0){
+        console.log("INF");
+    }else if(a == 0 || b * c == a * d){
+        console.log("NO");
+    }else if(b % a == 0){
+        console.log(-b / a);
+    }else{
+        console.log("NO");
+    }
+}

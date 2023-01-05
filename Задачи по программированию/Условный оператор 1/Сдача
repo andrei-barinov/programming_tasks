@@ -1,0 +1,43 @@
+//Сдача
+//Товар стоит a руб. b коп. За него заплатили c руб. d коп. Сколько сдачи требуется получить?
+//
+//Входные данные
+//
+//Вводятся 4 числа: a, b, c и d.
+//
+//Выходные данные
+//
+//Необходимо вывести 2 числа: e и f, число рублей и копеек, соответственно. В случае, если денег для покупки недостаточно, вывести «Денег недостаточно».
+//
+//Sample Input:
+//
+//5
+//5
+//6
+//5
+//Sample Output:
+//
+//1 0
+
+var stdin = process.openStdin();
+stdin.addListener("data", function(e) {
+    let data = e.toString().split('\n');
+    let a = +data[0];
+    let b = +data[1];
+    let c = +data[2];
+    let d = +data[3];
+    getResult(a, b, c, d);
+});
+
+function getResult(a, b, c, d){
+    let k = a * 100 + b;
+    let j = c * 100 + d;
+
+    if(j - k < 0){
+        console.log("Денег недостаточно");
+    }else{
+        let e = parseInt((j - k) / 100);
+        let f = (j - k) % 100;
+        console.log(e + " " + f);
+    }
+}

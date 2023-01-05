@@ -1,0 +1,37 @@
+//Максимум из трех
+//Входные данные
+//
+//Даны три целых числа, каждое записано в отдельной строке.
+//
+//Выходные данные
+//
+//Выведите наибольшее из данных чисел (программа должна вывести ровно одно целое число).
+//
+//Sample Input:
+//
+//3
+//5
+//9
+//Sample Output:
+//
+//9
+
+var stdin = process.openStdin();
+stdin.addListener("data", function(d) {
+    let data = d.toString().split('\n');
+    let a = +data[0];
+    let b = +data[1];
+    let c = +data[2];
+    getResult(a, b, c);
+  });
+
+function getResult(a, b, c){
+    if(a >= b && a >= c){
+        console.log(a);
+    }else if(b >= a && b >= c ){
+        console.log(b);
+    }else{
+        console.log(c);
+    }
+}
+
