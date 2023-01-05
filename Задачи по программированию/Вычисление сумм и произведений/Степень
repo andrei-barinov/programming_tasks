@@ -1,0 +1,29 @@
+//Степень
+//Напишите программу, вычисляющую 2 N.
+//
+//Входные данные
+//
+//Вводится целое неотрицательное число N, которое не превосходит 30.
+//
+//Выходные данные
+//
+//Выведите число 2 N.
+//
+//Sample Input:
+//
+//3
+//Sample Output:
+//
+//8
+
+var stdin = process.openStdin();
+stdin.addListener("data", function(d) {
+    let data = d.toString().split('\n');
+    let n = +data[0];
+    console.log(getResult(n));
+  });
+
+function getResult(n){
+    if(n == 0) return 1
+    else return 2 * getResult(n - 1);
+}

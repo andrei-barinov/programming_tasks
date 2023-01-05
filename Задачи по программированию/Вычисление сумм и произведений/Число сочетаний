@@ -1,0 +1,47 @@
+//Число сочетаний
+//По данным натуральным n и k вычислите значение  C_n^k = \frac{n!}{k!(n-k)!}C
+//n
+//k
+//​
+// =
+//k!(n−k)!
+//n!
+//​
+//  (число сочетаний из n элементов по k).
+//
+//Входные данные
+//
+//Вводятся 2 числа - n и k (n > k; n, k <= 30 ).
+//
+//Выходные данные
+//
+//Необходимо вывести  значение C_n^kC
+//n
+//k
+//​
+//  .
+//
+//Sample Input:
+//
+//2
+//1
+//Sample Output:
+//
+//2
+
+var stdin = process.openStdin();
+stdin.addListener("data", function(d) {
+    let data = d.toString().split('\n');
+    let n = +data[0];
+    let k = +data[1];
+    console.log(Math.ceil(getResult(n, k)));
+  });
+
+function getResult(n, k){
+    return getFactorial(n)/(getFactorial(k) * getFactorial(n - k));
+}
+
+function getFactorial(n){
+    if(n == 1) return 1
+    else return getFactorial(n - 1) * n;
+}

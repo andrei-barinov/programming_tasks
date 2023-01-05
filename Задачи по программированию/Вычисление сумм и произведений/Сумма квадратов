@@ -1,0 +1,32 @@
+//Сумма квадратов
+//По данному натуральному n вычислите сумму 12+22+...+n2.
+//
+//Входные данные
+//
+//Вводится единственное натуральное число n, не превосходящее 100
+//
+//Выходные данные
+//
+//Необходимо вывести  вычисленную сумму.
+//
+//Sample Input:
+//
+//2
+//Sample Output:
+//
+//5
+
+var stdin = process.openStdin();
+stdin.addListener("data", function(d) {
+    let data = d.toString().split('\n');
+    let n = +data[0];
+    getResult(n);
+  });
+
+function getResult(n){
+    let s = 0;
+    for(let i = 1; i <= n; i++){
+       s += i * i;
+    }
+    console.log(s);
+}

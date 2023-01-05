@@ -1,0 +1,29 @@
+//Факториал
+//Вычислите N! ("эн-факториал") – произведение всех натуральных чисел от 1 до N ( N!=1∙2∙3∙…∙ N ).
+//
+//Входные данные
+//
+//Вводится единственное число N – натуральное, не превосходит 12.
+//
+//Выходные данные
+//
+//Выведите полученное значение N!
+//
+//Sample Input:
+//
+//5
+//Sample Output:
+//
+//120
+
+var stdin = process.openStdin();
+stdin.addListener("data", function(d) {
+    let data = d.toString().split('\n');
+    let n = +data[0];
+    console.log(getResult(n));
+  });
+
+function getResult(n){
+    if(n == 1) return 1
+    else return getResult(n - 1) * n;
+}

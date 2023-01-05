@@ -1,0 +1,35 @@
+//Геометрическая прогрессия
+//По данным натуральным числам a и n вычислите сумму 1+a+a2+...+an, не используя формулу суммы геометрической прогрессии. Время работы программы должно быть пропорционально n.
+//
+//Входные данные
+//
+//Вводятся 2 числа - a и n.
+//
+//Выходные данные
+//
+//Необходимо вывести  значение суммы.
+//
+//Sample Input:
+//
+//2
+//2
+//Sample Output:
+//
+//7
+
+var stdin = process.openStdin();
+stdin.addListener("data", function(d) {
+    let data = d.toString().split('\n');
+    let a = +data[0];
+    let n = +data[1];
+    let result = getResult(a, n);
+    console.log(result.toString());
+  });
+
+function getResult(a, n){
+    a = BigInt(a);
+    n = BigInt(n);
+    if(n == 0) return 1n;
+    if(n == 1) return a + 1n;
+    return 1n + a * (getResult(a, n - 1n));
+}
